@@ -1,0 +1,20 @@
+#ddev-generated
+# Apache Tika container
+services:
+  tika:
+    # Name of container using standard ddev convention
+    container_name: ddev-${DDEV_SITENAME}-apache-tika
+    image: apache/tika:latest
+    # These labels ensure this service is discoverable by ddev.
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+    volumes:
+      - ".:/mnt/ddev_config"
+    expose:
+      - "9998"
+    environment:
+      - VIRTUAL_HOST=$DDEV_HOSTNAME
+      - HTTP_EXPOSE=9998:9998
+      - HTTPS_EXPOSE=9999:9998
+    mem_limit: 1073741824
