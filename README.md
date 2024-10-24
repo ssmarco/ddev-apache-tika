@@ -16,23 +16,31 @@ From your DDEV project, install this by running `ddev get ssmarco/ddev-apache-ti
 
 ## Getting started
 
-1. In the DDEV project directory launch the command:
+1. In the DDEV project directory:
 
-```
-ddev get ssmarco/ddev-apache-tika
-```
+    For DDEV v1.23.5 or above run
+
+    ```sh
+    ddev add-on get ssmarco/ddev-apache-tika
+    ```
+
+    For earlier versions of DDEV run
+
+    ```sh
+    ddev get ssmarco/ddev-apache-tika
+    ```
 
 2. Restart the DDEV instance:
 
-```
-ddev restart
-```
+    ```sh
+    ddev restart
+    ```
 
 3. Get the URL of the Kibana dashboard (e.g. https://your-project-name.ddev.site:5602):
 
-```
-ddev describe
-```
+    ```sh
+    ddev describe
+    ```
 
 ## Configuring your framework
 
@@ -40,46 +48,46 @@ ddev describe
 
 1. Update your project's `.env` file. The API keys are found in the Enterprise Search section of Kibana dashboard.
 
-```
-SS_TIKA_ENDPOINT="http://tika:9998"
-```
+    ```
+    SS_TIKA_ENDPOINT="http://tika:9998"
+    ```
 
 2. The Apache Tika endpoint is `http://tika:9998`
 
 3. The following modules are tested to work out of the box in your composer.json file:
 
-```
-"silverstripe/silverstripe-textextraction": "^4"
-```
+    ```
+    "silverstripe/silverstripe-textextraction": "^4"
+    ```
 
 ## Troubleshooting
 
 1. Make sure all required containers are downloaded
 
-```
-docker pull apache/tika:latest
-```
+    ```sh
+    docker pull apache/tika:latest
+    ```
 
 2. Remove container volumes to restart from scratch
 
-List all existing volumes from your system:
+    List all existing volumes from your system:
 
-```
-docker volume ls
-```
+    ```sh
+    docker volume ls
+    ```
 
-This will show example output below:
+    This will show example output below:
 
-```
-DRIVER    VOLUME NAME
-local     ddev-your-project-name_tika
-```
+    ```
+    DRIVER    VOLUME NAME
+    local     ddev-your-project-name_tika
+    ```
 
-Delete the volumes by running:
+    Delete the volumes by running:
 
-```
-docker volume rm ddev-your-project-name_tika
-```
+    ```sh
+    docker volume rm ddev-your-project-name_tika
+    ```
 
 3. Restart by `ddev restart`
 
@@ -87,23 +95,23 @@ docker volume rm ddev-your-project-name_tika
 
 5. Check the logs
 
-```
-ddev logs -s tika
-```
+    ```sh
+    ddev logs -s tika
+    ```
 
 6. Check job health
 
-You might need to install `jq` for better legibility of the output.
+    You might need to install `jq` for better legibility of the output.
 
-```
-docker inspect --format "{{json .State.Health }}" ddev-your-project-name-tika | jq
-```
+    ```sh
+    docker inspect --format "{{json .State.Health }}" ddev-your-project-name-tika | jq
+    ```
 
 7. Check memory consumptions
 
-```
-docker stats
-```
+    ```sh
+    docker stats
+    ```
 
 ## Warning
 
