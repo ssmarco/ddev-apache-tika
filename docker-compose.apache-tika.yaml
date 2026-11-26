@@ -1,7 +1,7 @@
 #ddev-generated
 # Apache Tika container
 services:
-  tika:
+  apache-tika:
     # Name of container using standard ddev convention
     container_name: ddev-${DDEV_SITENAME}-apache-tika
     image: apache/tika:latest
